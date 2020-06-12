@@ -1,0 +1,33 @@
+<h2>Tabela de Usuarios</h2>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nome Completo</th>
+            <th scope="col">Idade</th>
+            <th scope="col">Data Nascimento</th>
+            <th scope="col">Cpf</th>
+            <th scope="col">Nacionalidade</th>
+            <th scope="col">Sexo</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <th scope="row">{{ user.id }}</th>
+            <td>{{ user.nomeCompleto }}</td>
+            <td>{{ user.idade }}</td>
+            <td>{{ user.dataNascimento }}</td>
+            <td>{{ user.cpf }}</td>
+            <td>{{ user.nacionalidade }}</td>
+            <td>{{ user.sexo }}</td>
+            <td>
+                <a routerLink="/user/update/{{ user.id }}" class="btn btn-primary">Alterar</a>
+            </td>
+            <td>
+                <a routerLink="/user/delete/{{ user.id }}" class="btn btn-danger">Deletar</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

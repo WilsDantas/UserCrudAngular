@@ -1,0 +1,105 @@
+<h1>Alterar Usuario</h1>
+<form [formGroup]="formulariouser">
+    <div class="form-group">
+        <label for="name_user">Nome</label>
+        <input
+            type="text"
+            class="form-control"
+            id="name_user"
+            placeholder="Nome"
+            name="nomeCompleto"
+            formControlName="nomeCompleto"
+            [(ngModel)]="user.nomeCompleto"
+        >
+    </div>
+        <div *ngIf="!nomeCompleto.pristine && nomeCompleto.errors">
+            <p *ngIf="nomeCompleto.errors.required">
+            Nome Completo é obrigatório.
+            </p>
+            <p *ngIf="nomeCompleto.errors.minlength">
+            Nome Completo deve ter no mínimo 3 caracters.
+            </p>
+            <p *ngIf="nomeCompleto.errors.maxlength">
+            Nome Completo deve ter no máximo 255 caracters.
+            </p>
+      </div>
+    <div class="form-group">
+        <label for="idade_user">Idade</label>
+        <input
+            type="number"
+            class="form-control"
+            id="idade_user"
+            placeholder="Idade"
+            formControlName="idade"
+            [(ngModel)]="user.idade"
+        >
+    </div>
+    <div *ngIf="!idade.pristine && idade.errors">
+        <p *ngIf="idade.errors.required">
+        idade é obrigatório.
+        </p>
+        <p *ngIf="idade.errors.maxlength">
+        idade deve ter no máximo 2 caracters.
+        </p>
+  </div>
+    <div class="form-group">
+        <label for="data_nascimento_user">Data de Nascimento</label>
+        <input
+            type="text"
+            class="form-control"
+            id="data_nascimento_user"
+            placeholder="Data de Nascimento ( 01/01/1999 )"
+            formControlName="dataNascimento"
+            [(ngModel)]="user.dataNascimento"
+        >
+    </div>
+    <div *ngIf="!dataNascimento.pristine && dataNascimento.errors">
+        <p *ngIf="dataNascimento.errors.required">
+        dataNascimento é obrigatório.
+        </p>
+  </div>
+    <div class="form-group">
+        <label for="cpf_user">CPF</label>
+        <input
+            type="number"
+            class="form-control"
+            id="cpf_user"
+            placeholder="CPF"
+            formControlName="cpf"
+            [(ngModel)]="user.cpf"
+        >
+    </div>
+    <div *ngIf="!cpf.pristine && cpf.errors">
+        <p *ngIf="cpf.errors.required">
+            cpf é obrigatório.
+        </p>
+        <p *ngIf="cpf.errors.maxlength">
+            cpf deve ter no maximo 11 digitos
+        </p>
+  </div>
+    
+    <div class="form-group">
+        <label for="sexo_select">Sexo</label>
+        <select class="form-control" id="sexo_select" formControlName="sexo" [(ngModel)]="user.sexo">
+            <option *ngFor="let sexo of sexos" value="{{sexo.id}}">{{ sexo.valor }}</option>
+        </select>
+    </div>
+    <div *ngIf="!sexo.pristine && sexo.errors">
+        <p *ngIf="sexo.errors.required">
+            sexo é obrigatório.
+        </p>
+  </div>
+    <div class="form-group">
+        <label for="nacionalidade_select">Nacionalidade</label>
+        <select class="form-control" id="nacionalidade_select" formControlName="nacionalidade" [(ngModel)]="user.nacionalidade">
+            <option *ngFor="let nacionalidade of nacionalidades" value="{{nacionalidade.id}}">{{ nacionalidade.valor }}</option>
+        </select>
+    </div>
+    <div *ngIf="!nacionalidade.pristine && nacionalidade.errors">
+        <p *ngIf="nacionalidade.errors.required">
+            nacionalidade é obrigatório.
+        </p>
+  </div>
+  <button class="btn btn-primary" (click)="updateUser()">Atualizar Usuario</button>
+  <button class="btn btn-danger ml-3" (click)="cancel()">Cancelar</button>
+</form>
